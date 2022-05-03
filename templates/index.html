@@ -8,16 +8,20 @@
     
   </head>
   <body>
+    <h1>Recipes</h1>
     <header>
       <nav>
-        <a href="index.html">Recipes</a>
         <a href="create_recipe.html">Create New Recipe</a>
       </nav>
     </header>
 
     <div class="main">
       {% for i in recipes %}
-      <div class="singlerecipe">{{ i.name }}</div>
+      <div class="singlerecipecard">
+        <a href="">
+          {{ i.name }}
+        </a>
+      </div>
       {% endfor %}
     </div>
 
