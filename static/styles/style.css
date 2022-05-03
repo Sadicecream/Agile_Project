@@ -32,4 +32,16 @@ textarea {
     width: 300px;
 }
 
->>>>>>>c36131da3be862d8b4f639c2667b9c9c759bdc4a
+.recipe-display {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.reciepe {
+    padding-top: 2em;
+}
+
+.steps {
+    padding-top: 2em;
+}
