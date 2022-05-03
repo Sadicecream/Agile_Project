@@ -17,6 +17,11 @@
 
 }
 
+textarea {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
 .recipe-name {
     width: 150px;
 }
