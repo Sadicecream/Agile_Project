@@ -4,10 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>HTML 5 Boilerplate</title>
+    <title>CookBook Pro</title>
     
   </head>
   <body>
+    <h1>Recipes</h1>
+    <header>
+      <nav>
+        <a href="create_recipe.html">Create New Recipe</a>
+      </nav>
+    </header>
+
+    <div class="main">
+      {% for i in recipes %}
+      <div class="singlerecipecard">
+        <a href="">
+          {{ i.name }}
+        </a>
+      </div>
+      {% endfor %}
+    </div>
 
   </body>
 </html>
