@@ -1,20 +1,18 @@
 /*Fill in later*/
 
-
 .create-recipe-container {
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    
 }
+
 .create-recipe-area {
     display: flex;
     flex-direction: column;
     flex-shrink: 0;
     width: 300px;
     align-items: center;
-
 }
 
 textarea {
@@ -29,9 +27,13 @@ textarea {
 .recipe-name {
     width: 150px;
 }
+
 .recipe-ingredients {
     width: 250px;
 }
+
 .recipe-instructions {
     width: 300px;
 }
+
+>>>>>>>c36131da3be862d8b4f639c2667b9c9c759bdc4a
