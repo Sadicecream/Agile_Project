@@ -31,6 +31,10 @@ def test_attributes_recipebook(recs):
         assert type(i) is Recipe
     assert len(recs) == 4
 
+def test_attribute_errors():
+    with pytest.raises(ValueError):
+        RecipeBook(123)
+
 def test_get_by_name(recs):
     muffin = recs.get_by_name("Muffins")
     assert muffin.name == "Muffins"
@@ -39,8 +43,14 @@ def test_get_by_name(recs):
 
 def test_add_recipe(recs):
     cookies = Recipe(name="Cookies", ingredients="Sugar, Milk, Butter", instructions="something")
+    assert type(cookies) == Recipe
     recs.add(cookies)
     assert cookies in recs.recipes
+
+def test_add_error(recs):
+    cookies = RecipeBook('Cookies')
+    with pytest.raises(TypeError):
+        recs.add(cookies)
 
 def test_delete_recipe(recs):
     result = recs.delete("Muffins")
