@@ -1,4 +1,4 @@
-from recipe import Recipe
+from models.recipe import Recipe
 import json
 
 class RecipeBook:
