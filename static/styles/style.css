@@ -49,3 +49,9 @@ textarea {
 .steps {
     padding-top: 2em;
 }
+
+.update-recipe {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
