@@ -13,7 +13,8 @@ class RecipeBook:
                     Recipe(
                         elem["name"],
                         elem["ingredients"],
-                        elem["instructions"]
+                        elem["instructions"],
+                        elem["keyword"]
                     )for elem in json.load(fp)
                 ]
     
@@ -21,6 +22,14 @@ class RecipeBook:
         for recipe in self.recipes:
             if recipe.name == recipename:
                 return recipe
+
+    def get_by_keyword(self, keyword):
+        found = []
+        for recipe in self.recipes:
+            if recipe.keyword == keyword:
+                found.append(recipe)
+        
+        return found
 
     def __len__(self):
         return len(self.recipes)

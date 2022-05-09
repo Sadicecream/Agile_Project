@@ -7,10 +7,10 @@ from models.recipebook import RecipeBook
 
 JSON_FILE = """[
     
-    {"name": "Cake", "ingredients": "eggs, flour, milk", "instructions": "something"}, 
-    {"name": "Cupcakes", "ingredients": "eggs, milk", "instructions": "something"}, 
-    {"name": "Brownies", "ingredients": "sugar, flour", "instructions": "something"}, 
-    {"name": "Muffins", "ingredients": "eggs, milk", "instructions": "something123"}
+    {"name": "Cake", "ingredients": "eggs, flour, milk", "instructions": "something", "keyword": "easy"}, 
+    {"name": "Cupcakes", "ingredients": "eggs, milk", "instructions": "something", "keyword": "easy"}, 
+    {"name": "Brownies", "ingredients": "sugar, flour", "instructions": "something", "keyword": "chocolate"}, 
+    {"name": "Muffins", "ingredients": "eggs, milk", "instructions": "something123", "keyword": "breakfast"}
 
 ]"""
 
@@ -40,9 +40,14 @@ def test_get_by_name(recs):
     assert muffin.name == "Muffins"
     assert muffin.ingredients == "eggs, milk"
     assert muffin.instructions == "something123"
+    assert muffin.keyword == "breakfast"
+
+def test_get_by_keyword(recs):
+    result = recs.get_by_keyword("easy")
+    assert len(result) == 2
 
 def test_add_recipe(recs):
-    cookies = Recipe(name="Cookies", ingredients="Sugar, Milk, Butter", instructions="something")
+    cookies = Recipe(name="Cookies", ingredients="Sugar, Milk, Butter", instructions="something", keyword="fast")
     assert type(cookies) == Recipe
     recs.add(cookies)
     assert cookies in recs.recipes
