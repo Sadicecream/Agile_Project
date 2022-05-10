@@ -6,21 +6,31 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../static/styles/style.css">
-    <title>Example Reciepe</title>
+    <title>Update Reciepe</title>
 </head>
 
 <body>
     <div class="main-container">
-        <section class="recipe-display">
-            <h1 class="title-name">Example Reciepe</h1>
+        <div class="topnav">
+            <input type="text" placeholder="Search..">
+        </div>
+        <section class="update-recipe">
+            <h1 class="title-name">Reciepe to update: </h1>
+            <button id=1 class="edit">edit name</button>
             <article class="reciepe">
                 <div class="ingreedents">
                     <span>Ingreedents needed:</span>
                     <li></li>
+                    <button id=2 class="edit">edit ingreedents</button>
                 </div>
                 <div class="steps">
                     <span>Instructions</span>
                     <li></li>
+                    <button id=3 class="edit">edit instructions</button>
+                </div>
+                <div class="button-area">
+                    <button class="cancel-button">Cancel</button>
+                    <button class="save-button">Save</button>
                 </div>
             </article>
         </section>

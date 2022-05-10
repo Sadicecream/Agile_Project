@@ -40,3 +40,30 @@ textarea {
     width: 300px;
 }
 
+<<<<<<< HEAD
+=======
+.recipe-display {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.reciepe {
+    padding-top: 2em;
+}
+
+.steps {
+    padding-top: 2em;
+}
+
+.update-recipe {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.topnav {
+    display: flex;
+    justify-content: end;
+}
+>>>>>>> d25722b1fba40322701d5607853f92a91d1312c8
