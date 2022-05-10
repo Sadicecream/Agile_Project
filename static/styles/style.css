@@ -55,3 +55,8 @@ textarea {
     flex-direction: column;
     align-items: center;
 }
+
+.topnav {
+    display: flex;
+    justify-content: end;
+}
