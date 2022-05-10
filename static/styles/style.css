@@ -28,6 +28,10 @@ textarea {
     width: 150px;
 }
 
+.recipe-keyword {
+    width: 150px;
+}
+
 .recipe-ingredients {
     width: 250px;
 }
@@ -36,4 +40,3 @@ textarea {
     width: 300px;
 }
 
->>>>>>>c36131da3be862d8b4f639c2667b9c9c759bdc4a
