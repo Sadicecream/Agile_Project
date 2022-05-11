@@ -38,6 +38,6 @@ def test_check_update_recipe():
 def test_check_display_recipe():
     r4 = get_url("/recipes/{recipe}")
     assert r4.status_code == 200
-    assert "Ingreedents needed" in r4.text      #TYPOS NEED TO BE CHANGED IN HTML FILES
+    assert "Ingredients needed" in r4.text 
     assert "Instructions" in r4.text
 
