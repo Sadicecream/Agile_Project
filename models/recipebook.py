@@ -26,7 +26,7 @@ class RecipeBook:
     def get_by_keyword(self, keyword):
         found = []
         
-        [found.append(recipe) if recipe.keyword == keyword else None for recipe in self.recipes]
+        [found.append(recipe) if recipe.keyword in keyword else None for recipe in self.recipes]
 
         return found
 
