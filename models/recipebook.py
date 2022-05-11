@@ -25,10 +25,9 @@ class RecipeBook:
 
     def get_by_keyword(self, keyword):
         found = []
-        for recipe in self.recipes:
-            if recipe.keyword == keyword:
-                found.append(recipe)
         
+        [found.append(recipe) if recipe.keyword == keyword else None for recipe in self.recipes]
+
         return found
 
     def __len__(self):
