@@ -1,5 +1,5 @@
 from models.recipe import Recipe
-import json
+from __init__ import db
 
 class RecipeBook:
     def __init__(self, name):
@@ -8,15 +8,16 @@ class RecipeBook:
         else:
             self.name = name
 
-        with open('data/data.json') as fp:
-                self.recipes = [
-                    Recipe(
-                        elem["name"],
-                        elem["ingredients"],
-                        elem["instructions"],
-                        elem["keyword"]
-                    )for elem in json.load(fp)
-                ]
+            self.recipes = [
+                Recipe(
+                    elem["name"],
+                    elem["ingredients"],
+                    elem["instructions"],
+                    elem["keyword"]
+                )for elem in db.find()
+            ]
+
+
     
     def get_by_name(self, recipename):
         for recipe in self.recipes:
@@ -38,15 +39,17 @@ class RecipeBook:
             raise TypeError
         
         self.recipes.append(instance)
+        db.insert_one(instance.to_dict())
 
     def delete(self, recipename):
         rec = self.get_by_name(recipename)
         if rec:
             self.recipes.remove(rec)
+            db.delete_one({"name":rec.name})
             return True
         
         return False
     
-    def save(self):
+    """def save(self):
         with open("data/data.json", "w") as fp:
-            json.dump([rec.to_dict() for rec in self.recipes], fp)
+            json.dump([rec.to_dict() for rec in self.recipes], fp)"""
