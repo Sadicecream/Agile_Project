@@ -13,6 +13,9 @@
     <div class="topnav">
         <input type="text" placeholder="Search..">
     </div>
+    {% for message in get_flashed_messages() %}
+    {{ message }}
+    {% endfor %}
     <h1>Recipes</h1>
     <header>
         <nav>
