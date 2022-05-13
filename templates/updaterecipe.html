@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../static/styles/style.css">
-    <title>Update Reciepe</title>
+    <title>Update Recipe</title>
 </head>
 
 <body>
@@ -15,17 +15,17 @@
             <input type="text" placeholder="Search..">
         </div>
         <section class="update-recipe">
-            <h1 class="title-name">Recipe to update: </h1>
+            <h1 class="title-name">Edit: {{ recipe.name }}</h1>
             <button id=1 class="edit">edit name</button>
             <article class="reciepe">
-                <div class="ingreedents">
+                <div class="ingredients">
                     <span>Ingredients needed:</span>
-                    <li></li>
+                    <li>{{ recipe.ingredients }}</li>
                     <button id=2 class="edit">edit ingredients</button>
                 </div>
                 <div class="steps">
-                    <span>Instructions</span>
-                    <li></li>
+                    <span>Instructions:</span>
+                    <li>{{ recipe.instructions }}</li>
                     <button id=3 class="edit">edit instructions</button>
                 </div>
                 <div class="button-area">
