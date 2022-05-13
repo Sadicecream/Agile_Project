@@ -12,15 +12,19 @@
 <body>
     <div class="main-container">
         <section class="recipe-display">
-            <h1 class="title-name">Example Recipe</h1>
-            <article class="reciepe">
-                <div class="ingreedents">
-                    <span>Ingredients needed:</span>
-                    <li></li>
+            <h1 class="title-name">{{ recipe.name }}</h1>
+            <article class="recipe">
+                <div class="ingredients">
+                    <span>Ingredients:</span>
+                    <body>
+                        {{ recipe.ingredients }}
+                    </body>
                 </div>
                 <div class="steps">
-                    <span>Instructions</span>
-                    <li></li>
+                    <span>Instructions:</span>
+                    <body>
+                        {{ recipe.instructions }}
+                    </body>
                 </div>
             </article>
         </section>
