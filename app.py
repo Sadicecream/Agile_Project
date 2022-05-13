@@ -44,16 +44,15 @@ def create():
         return render_template("create_recipe.html")
 
     if request.method == 'POST':
-        print(request.get_data())
         instructions = str(request.form.getlist("Recipe Instructions")[0])
         ingredients = str(request.form.getlist("Recipe Ingredients")[0])
         keyword = str(request.form.getlist("Recipe Keyword")[0])
         name = str(request.form.getlist("Recipe Name")[0])
-        
-        if name != collection.get_by_name(name):
-            new_entry = Recipe(name,ingredients,instructions,keyword)
-            collection.add(new_entry)
-            return redirect('/recipes/{}'.format(name))
+        print(collection.get_by_name(name))
+        if collection.get_by_name(name) == None:
+                new_entry = Recipe(name,ingredients,instructions,keyword)
+                collection.add(new_entry)
+                return redirect('/recipes/{}'.format(name))
         flash('Recipe Name Exists','error')
         return redirect('/')
 
@@ -64,13 +63,14 @@ def update(recipe):
 
     if request.method == 'PUT':
         doc = db.find_one({"name":recipe})['_id']
+        print(request.form)
 
         new_name = str(request.form.getlist("Recipe Name")[0])
 
-        if collection.get_by_name(new_name) == None:
+        if (collection.get_by_name(new_name) == None) or (collection.get_by_name(new_name) == collection.get_by_name(recipe)):
             collection.get_by_name(recipe).instructions = str(request.form.getlist("Recipe Instructions")[0])
             collection.get_by_name(recipe).ingredients = str(request.form.getlist("Recipe Ingredients")[0])
-            #collection.get_by_name(recipe).keyword = str(request.form.getlist("Recipe Keyword")[0])
+            collection.get_by_name(recipe).keyword = str(request.form.getlist("Recipe Keyword")[0])
             collection.get_by_name(recipe).name = new_name
             new_entry = collection.get_by_name(new_name)
             db.update_one({"_id":ObjectId(doc)},{
