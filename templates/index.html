@@ -11,7 +11,10 @@
 
 <body>
     <div class="topnav">
-        <input type="text" placeholder="Search..">
+        <form method="POST" action="/">
+        <input type="text" name="Recipe Keyword" placeholder="Search..">
+        <input type="submit">
+        </form>
     </div>
     {% for message in get_flashed_messages() %}
     {{ message }}
@@ -19,7 +22,7 @@
     <h1>Recipes</h1>
     <header>
         <nav>
-            <a href="create_recipe.html">Create New Recipe</a>
+            <a href="/create_recipe.html">Create New Recipe</a>
         </nav>
     </header>
 

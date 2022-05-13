@@ -1,4 +1,3 @@
-from typing import Collection
 from flask import Flask, request, render_template, redirect, flash
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
@@ -9,16 +8,26 @@ from  __init__ import app ,db
 #FETCH api
 collection = RecipeBook('collections')
 
-@app.route('/')
+@app.route('/',methods=['GET','POST'])
 def home():
-    for recipe in collection.recipes:
-        print(recipe.__dict__)
-    return render_template("index.html",recipes=collection.recipes)
+    if request.method == 'GET':
+        return render_template("index.html",recipes=collection.recipes)
+    if request.method == 'POST':
+        search = request.form.getlist("Recipe Keyword")[0]
+        if search != '':
+            return redirect('/search/{}'.format(search))
+        else:
+            flash('No Recipes Found','error')
+            return redirect('/')
 
 @app.route('/search/<recipe>')
 def search(recipe):
     list_to_display = collection.get_by_keyword(recipe)
-    return render_template("index.html", recipe = list_to_display)
+    if list_to_display:
+        return render_template("index.html", recipes = list_to_display)
+    else:
+        flash('No Recipes Found','error')
+        return redirect('/')
     
 @app.route('/recipes/<recipe>',methods=['GET','DELETE'])
 def display(recipe):
@@ -27,6 +36,7 @@ def display(recipe):
 
     if request.method == 'DELETE':
         collection.delete(recipe)
+        flash('Recipe Deleted','success')
         return redirect('/')
 
 @app.route('/create_recipe.html',methods=['GET','POST'])
@@ -44,7 +54,6 @@ def create():
         if name != collection.get_by_name(name):
             new_entry = Recipe(name,ingredients,instructions,keyword)
             collection.add(new_entry)
-            flash('Recipe Added','success')
             return redirect('/recipes/{}'.format(name))
         flash('Recipe Name Exists','error')
         return redirect('/')
@@ -63,7 +72,7 @@ def update(recipe):
         if collection.get_by_name(new_name) == None:
             collection.get_by_name(recipe).instructions = str(request.form.getlist("Recipe Instructions")[0])
             collection.get_by_name(recipe).ingredients = str(request.form.getlist("Recipe Ingredients")[0])
-            #collection.get_by_name(recipe).keyword = str(request.form.getlist("Recipe Keyword")[0])
+            collection.get_by_name(recipe).keyword = str(request.form.getlist("Recipe Keyword")[0])
             collection.get_by_name(recipe).name = new_name
             new_entry = collection.get_by_name(new_name)
             db.update_one({"_id":ObjectId(doc)},{
@@ -71,10 +80,9 @@ def update(recipe):
                     "name": new_entry.name,
                     "ingredients": new_entry.ingredients,
                     "instructions": new_entry.instructions,
+                    "keyword": new_entry.keyword
                 }}
             )
-
-            flash("Recipe Updated","success")
             return redirect('/')
         flash("Recipe Name Exists","error")
         return redirect('/')
