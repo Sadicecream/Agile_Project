@@ -12,6 +12,7 @@
 <body>
     <div>
         <a href="/update/{{ recipe.name }}">Edit Recipe</a>
+        <a href="/">Back</a>
     </div>
     <div class="main-container">
         <section class="recipe-display">
@@ -31,6 +32,20 @@
                 </div>
             </article>
         </section>
+        <button onclick="delete_recipe()">Delete</button>
+        <script>
+            function delete_recipe(){
+                event.preventDefault()
+                return fetch("/recipes/{{ recipe.name }}",
+                    {
+                        method:'DELETE'})
+                        .then( response => {
+                        if (response.redirected){
+                            window.location.href = response.url
+                        }
+                    })
+            }
+        </script>
     </div>
 </body>
 

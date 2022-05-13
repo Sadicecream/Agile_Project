@@ -16,6 +16,7 @@
                 <h1>Create Recipe</h1>
             </header>
         <section class="create-recipe-container">
+            <form method="POST">
             <div class="create-recipe-area">
                 <h2 class="recipe-parts">Name</h2>
                 <textarea class="recipe-name" placeholder="type recipe name here" name="Recipe Name" rows="2" cols="20"></textarea>
@@ -27,9 +28,10 @@
                 <textarea class="recipe-instructions" placeholder="type instructions here" name="Recipe Instructions" rows="15" cols="40"></textarea>
             </div>
             <div class="button-area">
-                <button class="cancel-button">Cancel</button>
-                <button class="save-button">Save</button>
+                <input type="submit" method="GET" formaction="/" class="cancel-button" value="Cancel">
+                <input type="submit" class="save-button" value="Save">
             </div>
+            </form>
         </section>
     </div>
 

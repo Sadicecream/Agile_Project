@@ -36,7 +36,6 @@ def display(recipe):
 
     if request.method == 'DELETE':
         collection.delete(recipe)
-        flash('Recipe Deleted','success')
         return redirect('/')
 
 @app.route('/create_recipe.html',methods=['GET','POST'])
@@ -65,14 +64,13 @@ def update(recipe):
 
     if request.method == 'PUT':
         doc = db.find_one({"name":recipe})['_id']
-        print(db.find_one({"_id":ObjectId(doc)}))
-        
+
         new_name = str(request.form.getlist("Recipe Name")[0])
 
         if collection.get_by_name(new_name) == None:
             collection.get_by_name(recipe).instructions = str(request.form.getlist("Recipe Instructions")[0])
             collection.get_by_name(recipe).ingredients = str(request.form.getlist("Recipe Ingredients")[0])
-            collection.get_by_name(recipe).keyword = str(request.form.getlist("Recipe Keyword")[0])
+            #collection.get_by_name(recipe).keyword = str(request.form.getlist("Recipe Keyword")[0])
             collection.get_by_name(recipe).name = new_name
             new_entry = collection.get_by_name(new_name)
             db.update_one({"_id":ObjectId(doc)},{
