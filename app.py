@@ -70,7 +70,9 @@ def update(recipe):
         return render_template("updaterecipe.html", recipe = recipes)
 
     if request.method == 'PUT':
-        doc = db.find_one({"name":recipe})['_id']
+        doc = db.find_one({"name":recipe})
+        if doc:
+            doc=doc['_id']
         print(request.form)
 
         new_name = str(request.form.getlist("Recipe Name")[0])

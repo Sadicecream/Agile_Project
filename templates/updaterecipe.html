@@ -16,17 +16,17 @@
     <div class="main-container">
         <section class="update-recipe">
             <form>
-                <h1 class="title-name">Edit: {{ recipe.name }}</h1>
+                <h1 class="title-name">Edit: {{ recipe[0].name }}</h1>
                 <div class="create-recipe-area">
                     <h2 class="recipe-parts">Name</h2>
-                    <textarea class="recipe-name" placeholder="type recipe name here" name="Recipe Name" rows="2" cols="20"></textarea>
+                    <textarea class="recipe-name" placeholder="type recipe name here" name="Recipe Name" rows="2" cols="20">{{ recipe[0].name }}</textarea>
                     <h2 class="recipe-parts">Keyword</h2>
-                    <textarea class="recipe-keyword" placeholder="type keyword here" name="Recipe Keyword" rows="2" cols="20"></textarea>
+                    <textarea class="recipe-keyword" placeholder="type keyword here" name="Recipe Keyword" rows="2" cols="20">{{ recipe[0].keyword }}</textarea>
                     <h2 class="recipe-parts">Ingredients</h2>
-                    <textarea class="recipe-ingredients" placeholder="type ingredients here" name="Recipe Ingredients" rows="10" cols="30"></textarea>
+                    <textarea class="recipe-ingredients" placeholder="type ingredients here" name="Recipe Ingredients" rows="10" cols="30">{{ recipe[0].ingredients }}</textarea>
                     <h2 class="recipe-parts">Instructions</h2>
-                    <textarea class="recipe-instructions" placeholder="type instructions here" name="Recipe Instructions" rows="15" cols="40"></textarea>
-                </div>>
+                    <textarea class="recipe-instructions" placeholder="type instructions here" name="Recipe Instructions" rows="15" cols="40">{{ recipe[0].instructions }}</textarea>
+                </div>
                         <input type="submit" method="GET" formaction="/" class="cancel-button" value="Cancel">
                         <button onclick="update()">Save</button>
                         <script>
@@ -37,7 +37,7 @@
                                 req_body.append("Recipe Keyword", document.querySelector('[name="Recipe Keyword"]').value)
                                 req_body.append("Recipe Ingredients", document.querySelector('[name="Recipe Ingredients"]').value)
                                 req_body.append("Recipe Instructions", document.querySelector('[name="Recipe Instructions"]').value)
-                                return fetch(`/update/{{ recipe.name }}`, {
+                                return fetch(`/update/{{ recipe[0].name }}`, {
                                         method: 'PUT',
                                         body: req_body
                                     })
