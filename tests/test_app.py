@@ -21,6 +21,8 @@ def test_check_home():
     r1 = get_url("/fhidsfs")
     assert r1.status_code == 404
 
+    
+
 def test_check_create_recipe():
     r2 = get_url("/create_recipe.html")
     assert r2.status_code == 200
@@ -31,13 +33,13 @@ def test_check_create_recipe():
 def test_check_update_recipe():
     r3 = get_url("/update/{recipe}")
     assert r3.status_code == 200
-    assert "cancel" in r3.text
-    assert "save" in r3.text
-    assert "to update" in r3.text
+    assert "Cancel" in r3.text
+    assert "Save" in r3.text
+    assert "Edit:" in r3.text
 
 def test_check_display_recipe():
     r4 = get_url("/recipes/{recipe}")
     assert r4.status_code == 200
-    assert "Ingredients needed" in r4.text 
+    assert "Ingredients" in r4.text 
     assert "Instructions" in r4.text
 
