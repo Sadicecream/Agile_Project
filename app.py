@@ -32,7 +32,11 @@ def search(recipe):
 @app.route('/recipes/<recipe>',methods=['GET','DELETE'])
 def display(recipe):
     if request.method == 'GET':
-        return render_template("displayrecipe.html", recipe =  collection.get_by_name(recipe))    
+        recipes = []
+        recipes.append(collection.get_by_name(recipe))
+        recipes.append(collection.recipes)
+        print(recipes)
+        return render_template("displayrecipe.html", recipe =  recipes)    
 
     if request.method == 'DELETE':
         collection.delete(recipe)
@@ -59,7 +63,11 @@ def create():
 @app.route('/update/<recipe>',methods=['GET','PUT'])
 def update(recipe):
     if request.method  == 'GET':
-        return render_template("updaterecipe.html", recipe = collection.get_by_name(recipe))
+        recipes = []
+        recipes.append(collection.get_by_name(recipe))
+        recipes.append(collection.recipes)
+        print(recipes)
+        return render_template("updaterecipe.html", recipe = recipes)
 
     if request.method == 'PUT':
         doc = db.find_one({"name":recipe})['_id']

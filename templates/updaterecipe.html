@@ -17,18 +17,16 @@
         <section class="update-recipe">
             <form>
                 <h1 class="title-name">Edit: {{ recipe.name }}</h1>
-                <input type="text" name="Recipe Name" value="{{ recipe.name }}">
-                <article class="reciepe">
-                    <input type="text" name="Recipe Keyword" value="{{ recipe.keyword }}">
-                    <div class="ingredients">
-                        <span>Ingredients needed:</span>
-                        <input type="text" name="Recipe Ingredients" value="{{ recipe.ingredients }}">
-                    </div>
-                    <div class="steps">
-                        <span>Instructions:</span>
-                        <input type="text" name="Recipe Instructions" value="{{ recipe.instructions }}">
-                    </div>
-                    <div class="button-area">
+                <div class="create-recipe-area">
+                    <h2 class="recipe-parts">Name</h2>
+                    <textarea class="recipe-name" placeholder="type recipe name here" name="Recipe Name" rows="2" cols="20"></textarea>
+                    <h2 class="recipe-parts">Keyword</h2>
+                    <textarea class="recipe-keyword" placeholder="type keyword here" name="Recipe Keyword" rows="2" cols="20"></textarea>
+                    <h2 class="recipe-parts">Ingredients</h2>
+                    <textarea class="recipe-ingredients" placeholder="type ingredients here" name="Recipe Ingredients" rows="10" cols="30"></textarea>
+                    <h2 class="recipe-parts">Instructions</h2>
+                    <textarea class="recipe-instructions" placeholder="type instructions here" name="Recipe Instructions" rows="15" cols="40"></textarea>
+                </div>>
                         <input type="submit" method="GET" formaction="/" class="cancel-button" value="Cancel">
                         <button onclick="update()">Save</button>
                         <script>
