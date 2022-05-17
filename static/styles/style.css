@@ -1,5 +1,17 @@
 /*Fill in later*/
 
+:root {
+    --dark-yellow: #FF9F1C;
+    --yellow: #FFBF69;
+    --pastel-blue: #CBF3F0;
+    --bright-blue: #2EC4B6;
+    --white: #FFFFFF;
+}
+
+body h1 {
+    /* h1?? font choice?? */
+}
+
 .create-recipe-container {
     display: flex;
     justify-content: center;
@@ -40,19 +52,24 @@ textarea {
     width: 300px;
 }
 
-<<<<<<< HEAD
-=======
 .recipe-display {
     display: flex;
     flex-direction: column;
-    align-items: center;
 }
 
-.reciepe {
-    padding-top: 2em;
+.recipe {
+    padding: 2em;
+    background-color: var(--yellow);
+}
+
+.ingredients {
+    display: flex;
+    flex-direction: column;
 }
 
 .steps {
+    display: flex;
+    flex-direction: column;
     padding-top: 2em;
 }
 
@@ -64,6 +81,44 @@ textarea {
 
 .topnav {
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
 }
->>>>>>> d25722b1fba40322701d5607853f92a91d1312c8
+
+.main-container {
+    display: flex;
+    flex-direction: row;
+    padding-top: 2em;
+}
+
+.side-nav {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    width: 20%;
+    background-color: var(--pastel-blue);
+}
+
+.side-list {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--bright-blue);
+}
+
+.recipe-display {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: var(--dark-yellow);
+    padding-left: 2em;
+    padding-right: 2em;
+    padding-bottom: 2em;
+}
+
+@media screen and (max-width: 600px) {
+    .main-container {
+        flex-direction: column;
+    }
+    .side-nav {
+        width: 100%;
+    }
+}

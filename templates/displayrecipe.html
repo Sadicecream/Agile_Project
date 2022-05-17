@@ -15,37 +15,52 @@
         <a href="/">Back</a>
     </div>
     <div class="main-container">
+        <section class="side-nav">
+            <h1>CookBook Pro</h1>
+            <div class="side-list">
+                {% for i in recipes %}
+                <div class="singlerecipecard">
+                    <a href="/recipes/{{ i.name }}">
+                  {{ i.name }}
+                </a>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
         <section class="recipe-display">
             <h1 class="title-name">{{ recipe.name }}</h1>
             <article class="recipe">
                 <div class="ingredients">
                     <span>Ingredients:</span>
+
                     <body>
                         {{ recipe.ingredients }}
                     </body>
                 </div>
                 <div class="steps">
                     <span>Instructions:</span>
+
                     <body>
                         {{ recipe.instructions }}
                     </body>
                 </div>
             </article>
+
+            <button onclick="delete_recipe()">Delete</button>
+            <script>
+                function delete_recipe() {
+                    event.preventDefault()
+                    return fetch("/recipes/{{ recipe.name }}", {
+                            method: 'DELETE'
+                        })
+                        .then(response => {
+                            if (response.redirected) {
+                                window.location.href = response.url
+                            }
+                        })
+                }
+            </script>
         </section>
-        <button onclick="delete_recipe()">Delete</button>
-        <script>
-            function delete_recipe(){
-                event.preventDefault()
-                return fetch("/recipes/{{ recipe.name }}",
-                    {
-                        method:'DELETE'})
-                        .then( response => {
-                        if (response.redirected){
-                            window.location.href = response.url
-                        }
-                    })
-            }
-        </script>
     </div>
 </body>
 

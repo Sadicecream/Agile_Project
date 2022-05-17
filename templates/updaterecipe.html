@@ -10,48 +10,48 @@
 </head>
 
 <body>
+    <div class="topnav">
+        <input type="text" placeholder="Search..">
+    </div>
     <div class="main-container">
-        <div class="topnav">
-            <input type="text" placeholder="Search..">
-        </div>
         <section class="update-recipe">
             <form>
-            <h1 class="title-name">Edit: {{ recipe.name }}</h1>
-            <input type="text" name="Recipe Name" value="{{ recipe.name }}">
-            <article class="reciepe">
-                <input type="text" name="Recipe Keyword" value="{{ recipe.keyword }}">
-                <div class="ingredients">
-                    <span>Ingredients needed:</span>
-                    <input type="text" name="Recipe Ingredients" value="{{ recipe.ingredients }}">
-                </div>
-                <div class="steps">
-                    <span>Instructions:</span>
-                    <input type="text" name="Recipe Instructions"value="{{ recipe.instructions }}">
-                </div>
-                <div class="button-area">
-                    <input type="submit" method="GET" formaction="/" class="cancel-button" value="Cancel">
-                    <button onclick="update()">Save</button>
-                    <script>
-                        function update(){
-                            event.preventDefault()
-                            let req_body = new FormData()
-                            req_body.append("Recipe Name",document.querySelector('[name="Recipe Name"]').value)
-                            req_body.append("Recipe Keyword",document.querySelector('[name="Recipe Keyword"]').value)
-                            req_body.append("Recipe Ingredients",document.querySelector('[name="Recipe Ingredients"]').value)
-                            req_body.append("Recipe Instructions",document.querySelector('[name="Recipe Instructions"]').value)
-                            return fetch(`/update/{{ recipe.name }}`,
-                                {
-                                    method:'PUT',
-                                    body:req_body})
-                                .then(respone => {
-                                    if (respone.redirected) {
-                                        window.location.href =respone.url
-                                    }
-                                })
-                        }
-                    </script>
-                </div>
-            </article>
+                <h1 class="title-name">Edit: {{ recipe.name }}</h1>
+                <input type="text" name="Recipe Name" value="{{ recipe.name }}">
+                <article class="reciepe">
+                    <input type="text" name="Recipe Keyword" value="{{ recipe.keyword }}">
+                    <div class="ingredients">
+                        <span>Ingredients needed:</span>
+                        <input type="text" name="Recipe Ingredients" value="{{ recipe.ingredients }}">
+                    </div>
+                    <div class="steps">
+                        <span>Instructions:</span>
+                        <input type="text" name="Recipe Instructions" value="{{ recipe.instructions }}">
+                    </div>
+                    <div class="button-area">
+                        <input type="submit" method="GET" formaction="/" class="cancel-button" value="Cancel">
+                        <button onclick="update()">Save</button>
+                        <script>
+                            function update() {
+                                event.preventDefault()
+                                let req_body = new FormData()
+                                req_body.append("Recipe Name", document.querySelector('[name="Recipe Name"]').value)
+                                req_body.append("Recipe Keyword", document.querySelector('[name="Recipe Keyword"]').value)
+                                req_body.append("Recipe Ingredients", document.querySelector('[name="Recipe Ingredients"]').value)
+                                req_body.append("Recipe Instructions", document.querySelector('[name="Recipe Instructions"]').value)
+                                return fetch(`/update/{{ recipe.name }}`, {
+                                        method: 'PUT',
+                                        body: req_body
+                                    })
+                                    .then(respone => {
+                                        if (respone.redirected) {
+                                            window.location.href = respone.url
+                                        }
+                                    })
+                            }
+                        </script>
+                    </div>
+                </article>
             </form>
         </section>
     </div>
