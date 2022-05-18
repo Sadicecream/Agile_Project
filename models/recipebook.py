@@ -17,17 +17,60 @@ class RecipeBook:
                 )for elem in db.find()
             ]
 
-
+    def isWordPresent(self, sentence, word):
+     
+        word = word.upper()
+ 
+        # To convert the complete sentence in uppercase
+        sentence = sentence.upper()
+ 
+        # Both strings are converted to the same case,
+        # so that the search is not case-sensitive
     
+        # To break the sentence in words
+        s = sentence.split()
+    
+        for temp in s :
+    
+            # Compare the current word
+            # with the word to be searched
+            if (temp == word) :
+                return True
+    
+        return False
+        
     def get_by_name(self, recipename):
         for recipe in self.recipes:
-            if recipe.name == recipename:
+            if recipe.name in recipename:
                 return recipe
 
     def get_by_keyword(self, keyword):
         found = []
+        splitkeyword = keyword.split('_')
         
-        [found.append(recipe) if recipe.keyword in keyword else None for recipe in self.recipes]
+        #[found.append(recipe) if recipe.keyword.lower() in keyword.lower() else None for recipe in self.recipes]
+
+        #[found.append(recipe) if recipe.name in keyword else None for recipe in self.recipes]
+
+        for recipe in self.recipes:
+            if (self.isWordPresent(recipe.keyword, splitkeyword[0])):
+                found.append(recipe)
+            elif recipe.keyword in keyword:
+                found.append(recipe)
+
+        return found
+
+    def search_by_name(self, name):
+        found = []
+        splitname = name.split('_')
+        
+        #[found.append(recipe) if recipe.name.lower() in name.lower() else None for recipe in self.recipes]
+
+        for recipe in self.recipes:
+            if (self.isWordPresent(recipe.name, splitname[0])):
+                found.append(recipe)
+            elif recipe.name.lower() in name.lower():
+                found.append(recipe)
 
         return found
 

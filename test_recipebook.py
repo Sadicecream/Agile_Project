@@ -38,26 +38,28 @@ def test_attribute_errors():
         RecipeBook(123)
 
 def test_get_by_name(recs):
-    recs.add(Recipe("Pancakes", "Eggs, Milk", "Combine something", "quick"))
+    recs.add(Recipe("Recipe One", "random ingredients", "Combine something", "random keyword"))
     
-    pancakes = recs.get_by_name("Pancakes")
+    pancakes = recs.get_by_name("Recipe One")
     
-    assert pancakes.name == "Pancakes"
-    assert pancakes.ingredients == "Eggs, Milk"
+    assert pancakes.name == "Recipe One"
+    assert pancakes.ingredients == "random ingredients"
     assert pancakes.instructions == "Combine something"
-    assert pancakes.keyword == "quick"
+    assert pancakes.keyword == "random keyword"
 
-    recs.delete("Pancakes")
+    recs.delete("Recipe One")
 
 def test_get_by_keyword(recs):
-    recs.add(Recipe("Milkshake", "Eggs, Milk", "Combine something", "easy"))
-    recs.add(Recipe("Pancakes", "Eggs, Milk", "Combine something", "easy"))
+    recs.add(Recipe("Recipe One", "random ingredients", "Combine something", "random keyword"))
+    recs.add(Recipe("Recipe Two", "random ingredients", "Combine something", "random keyword"))
 
-    result = recs.get_by_keyword("easy")
+    result = recs.get_by_keyword("random keyword")
+    assert len(result) == 2
+    result = recs.get_by_keyword("random")
     assert len(result) == 2
 
-    recs.delete("Milkshake")
-    recs.delete("Pancakes")
+    recs.delete("Recipe One")
+    recs.delete("Recipe Two")
 
 def test_add_recipe(recs):
     cookies = Recipe(name="Cookies", ingredients="Sugar, Milk, Butter", instructions="something", keyword="fast")
@@ -73,15 +75,31 @@ def test_add_error(recs):
         recs.add(cookies)
 
 def test_delete_recipe(recs):
-    recs.add(Recipe("Milkshake", "Eggs, Milk", "Combine something", "quick"))
-    result = recs.delete("Milkshake")
+    recs.add(Recipe("Recipe One", "random ingredients", "Combine something", "random keyword"))
+    result = recs.delete("Recipe One")
     assert result is True
 
     for i in recs.recipes:
-        assert i.name != "Milkshake"
+        assert i.name != "Recipe One"
 
-    result = recs.delete("Milkshake")
+    result = recs.delete("Recipe One")
     assert result is False
+
+def test_search_by_name(recs):
+    recs.add(Recipe("Recipe One", "random ingredients", "Combine something", "random keyword"))
+    recs.add(Recipe("Recipe Two", "random ingredients", "Combine something", "random keyword"))
+
+    result = recs.search_by_name("Recipe One")
+    assert len(result) == 1
+    result = recs.search_by_name("Recipe")
+    assert len(result) == 2
+
+    recs.delete("Recipe One")
+    recs.delete("Recipe Two")
+
+def test_present_word(recs):
+    assert recs.isWordPresent("Hello my name is", "name") == True
+
 
 # @patch("builtins.open", new_callable=mock_open)
 # def test_save(mock_file, recs):

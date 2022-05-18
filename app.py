@@ -1,6 +1,7 @@
 from flask import Flask, request, render_template, redirect, flash
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
+from requests import session
 from models.recipe import Recipe
 from models.recipebook import RecipeBook
 from  __init__ import app ,db
@@ -14,15 +15,21 @@ def home():
         return render_template("index.html",recipes=collection.recipes)
     if request.method == 'POST':
         search = request.form.getlist("Recipe Keyword")[0]
+        select = request.form.get('comp_select')
         if search != '':
-            return redirect('/search/{}'.format(search))
+            return redirect('/search/{}'.format(search+'_'+select))
         else:
             flash('No Recipes Found','error')
             return redirect('/')
 
 @app.route('/search/<recipe>')
 def search(recipe):
-    list_to_display = collection.get_by_keyword(recipe)
+    if 'keyword' in recipe:
+        list_to_display = collection.get_by_keyword(recipe)
+    elif 'name' in recipe:
+        list_to_display = collection.search_by_name(recipe)
+    else:
+        list_to_display = False
     if list_to_display:
         return render_template("index.html", recipes = list_to_display)
     else:

@@ -17,7 +17,7 @@ def test_attribute_errors():
         Recipe(name=123, ingredients="Eggs, Milk, Sugar", instructions="instructions", keyword="fast")
 
     with pytest.raises(ValueError):
-        Recipe(name="Muffins", ingredients=1234, instructions="instructions", keyword="fast")
+        Recipe(name="Recipe One", ingredients=1234, instructions="instructions", keyword="fast")
 
     with pytest.raises(ValueError):
         Recipe(name="Muffins", ingredients="Eggs, Milk, Sugar", instructions=123, keyword="fast")
