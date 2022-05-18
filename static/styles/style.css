@@ -8,6 +8,9 @@
     --white: #FFFFFF;
 }
 
+h1 {
+    font-family: 'Poppins', sans-serif;
+}
 body h1 {
     /* h1?? font choice?? */
     
