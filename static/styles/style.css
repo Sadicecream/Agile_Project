@@ -10,6 +10,7 @@
 
 body h1 {
     /* h1?? font choice?? */
+    
 }
 
 .create-recipe-container {
@@ -17,6 +18,7 @@ body h1 {
     justify-content: center;
     flex-direction: column;
     align-items: center;
+    background-color: var(--bright-blue);
 }
 
 .create-recipe-area {
@@ -31,28 +33,35 @@ body h1 {
 textarea {
     margin-top: 5px;
     margin-bottom: 8px;
+    resize: none;
 }
 
 .cancel-button {
-    background-color: var(--dark-yellow);
+    background-color: var(--yellow);
     border: none;
-    color: var(--pastel-blue);
+    color: var(--white);
     padding: 5px 12px;
     text-decoration: none;
     font-size: 16px;
+    margin-left: 5px;
+    margin-bottom: 8px;
+    border-radius: 15px;
 }
 
 .save-button {
-    background-color: var(--dark-yellow);
+    background-color: var(--yellow);
     border: none;
-    color: var(--pastel-blue);
+    color: var(--white);
     padding: 5px 12px;
     text-decoration: none;
     font-size: 16px;
+    margin-bottom: 8px;
+    border-radius: 15px;
 }
 
 .recipe-parts {
     margin: 0;
+    padding-top: 15px;
 }
 
 .recipe-name {
@@ -68,7 +77,7 @@ textarea {
 }
 
 .recipe-instructions {
-    width: 300px;
+    width: 275px;
 }
 
 .recipe-display {
