@@ -103,11 +103,6 @@ textarea {
     flex-direction: column;
 }
 
-.recipe {
-    padding: 2em;
-    background-color: var(--yellow);
-}
-
 .ingredients {
     display: flex;
     flex-direction: column;
@@ -130,6 +125,25 @@ textarea {
     justify-content: flex-end;
 }
 
+.topbar a:link {
+    background-color: var(--bright-blue);
+    color: var(--pastel-blue);
+    padding: 1em;
+    border-radius: 0px 0px 15px 15px;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+}
+
+.topbar a:visited {
+    color: var(--dark-yellow);
+    text-shadow: #CBF3F0;
+    text-decoration: none;
+}
+
+.topbar a:hover {
+    color: var(--white);
+}
+
 .main-container {
     display: flex;
     flex-direction: row;
@@ -139,33 +153,82 @@ textarea {
 
 .side-nav {
     display: flex;
-    justify-content: center;
-    height: 100%;
-    width: 20%;
-    background-color: var(--pastel-blue);
+    flex-direction: column;
+    align-items: center;
+    padding-left: 2em;
+    background-color: var(--bright-blue);
+    color: var(--white);
+    border-radius: 15px 0px 0px 15px;
 }
 
 .side-list {
-    display: flex;
-    flex-direction: column;
-    background-color: var(--bright-blue);
+    background-color: var(--pastel-blue);
+    padding-top: 1em;
+    padding-bottom: 1em;
+    border-radius: 15px 0px 0px 15px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.side-list div {
+    padding-left: 2em;
+    padding-right: 2em;
+    padding-top: 0.25em;
 }
 
 .recipe-display {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
     background-color: var(--dark-yellow);
-    padding-left: 2em;
     padding-right: 2em;
     padding-bottom: 2em;
+    border-radius: 0px 15px 15px 0px;
+    overflow: hidden;
+}
+
+.recipe-display h1 {
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+.recipe-display button {
+    margin-left: 4em;
+    margin-right: 4em;
+}
+
+.recipe {
+    padding: 2em;
+    background-color: var(--yellow);
+    border-radius: 0px 15px 15px 0px;
+    font-family: 'Poppins', sans-serif;
 }
 
 @media screen and (max-width: 600px) {
     .main-container {
-        flex-direction: column;
+        flex-direction: column-reverse;
     }
     .side-nav {
+        padding-left: 0em;
+        border-radius: 0px 0px 15px 15px;
+    }
+    .side-list {
         width: 100%;
+        border-radius: 0px 0px 15px 15px;
+    }
+    .recipe-display {
+        align-items: center;
+        padding-right: 0em;
+        border-radius: 15px 15px 0px 0px;
+    }
+    .ingredients {
+        padding-left: 2em;
+    }
+    .steps {
+        padding-left: 2em;
+    }
+    .recipe {
+        width: 100%;
+        margin-left: 0.5em;
+        margin-right: 0.5em;
+        border-style: solid;
+        border-color: var(--bright-blue);
+        border-radius: 15px 15px 15px 15px;
     }
 }
