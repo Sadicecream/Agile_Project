@@ -8,12 +8,13 @@
     --white: #FFFFFF;
 }
 
-h1 {
-    font-family: 'Poppins', sans-serif;
+body {
+    background-color: var(--yellow);
 }
+
 body h1 {
-    /* h1?? font choice?? */
-    
+    font-family: 'Poppins', sans-serif;
+    color: var(--white);
 }
 
 .create-recipe-container {
@@ -22,6 +23,7 @@ body h1 {
     flex-direction: column;
     align-items: center;
     background-color: var(--bright-blue);
+    color: var(--white);
 }
 
 .create-recipe-area {
@@ -31,12 +33,15 @@ body h1 {
     width: 300px;
     align-items: center;
     justify-content: center;
+    font-family: 'Poppins', sans-serif;
 }
 
 textarea {
     margin-top: 5px;
     margin-bottom: 8px;
     resize: none;
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--pastel-blue);
 }
 
 .button-area {
@@ -46,7 +51,7 @@ textarea {
 }
 
 .cancel-button {
-    background-color: var(--yellow);
+    background-color: var(--dark-yellow);
     border: none;
     color: var(--white);
     padding: 5px 12px;
@@ -55,10 +60,11 @@ textarea {
     margin-left: 12px;
     margin-bottom: 8px;
     border-radius: 15px;
+    font-family: 'Poppins', sans-serif;
 }
 
 .save-button {
-    background-color: var(--yellow);
+    background-color: var(--dark-yellow);
     border: none;
     color: var(--white);
     padding: 5px 12px;
@@ -67,6 +73,7 @@ textarea {
     margin-right: 12px;
     margin-bottom: 8px;
     border-radius: 15px;
+    font-family: 'Poppins', sans-serif;
 }
 
 .recipe-parts {
