@@ -14,7 +14,6 @@ body {
 
 body h1 {
     font-family: 'Poppins', sans-serif;
-    color: var(--white);
 }
 
 .create-recipe-container {
