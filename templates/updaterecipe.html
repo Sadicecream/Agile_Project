@@ -28,7 +28,7 @@
                     <textarea class="recipe-instructions" placeholder="type instructions here" name="Recipe Instructions" rows="15" cols="40">{{ recipe[0].instructions }}</textarea>
                 </div>
                         <input type="submit" method="GET" formaction="/" class="cancel-button" value="Cancel">
-                        <button onclick="update()">Save</button>
+                        <button class="save-button" onclick="update()">Save</button>
                         <script>
                             function update() {
                                 event.preventDefault()
