@@ -13,7 +13,103 @@ body {
 }
 
 body h1 {
+    padding-top: 0.25em;
+    padding-bottom: 0.25em;
+    padding-left: 1em;
+    background-color: var(--dark-yellow);
+    border-radius: 15px;
     font-family: 'Poppins', sans-serif;
+}
+
+.topnav {
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    background-color: var(--bright-blue);
+    border-radius: 15px;
+}
+
+.topnav form,
+input {
+    margin-left: 1em;
+}
+
+.alertmsg {
+    width: fit-content;
+    overflow: hidden;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    margin-left: 1.75em;
+    background-color: var(--bright-blue);
+    color: var(--white);
+    border-radius: 0px 0px 15px 15px;
+    font-family: 'Poppins', sans-serif;
+}
+
+header nav {
+    margin-bottom: 1em;
+}
+
+nav a {
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    padding-left: 2em;
+    padding-right: 2em;
+    background-color: var(--pastel-blue);
+    border-style: solid;
+    border-radius: 15px;
+    border-color: var(--bright-blue);
+}
+
+nav a:link {
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+}
+
+nav a:visited {
+    color: var(--dark-yellow);
+}
+
+nav a:hover {
+    color: var(--white);
+}
+
+.main {
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    background-color: var(--pastel-blue);
+    border-style: solid;
+    border-color: var(--bright-blue);
+    border-radius: 15px;
+}
+
+.main a:link {
+    display: inline-block;
+    padding-top: 0.25em;
+    padding-left: 2em;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+}
+
+.main a:visited {
+    color: var(--bright-blue);
+}
+
+.main a:hover {
+    color: var(--white);
+}
+
+.main header {
+    display: flex;
+    justify-content: center;
+}
+
+.main header h1 {
+    padding-right: 1em;
+}
+
+.main-container .main {
+    background: none;
+    border-style: none;
 }
 
 .create-recipe-container {
@@ -29,7 +125,6 @@ body h1 {
 .create-recipe-area {
     display: flex;
     flex-direction: column;
-    flex-shrink: 0;
     width: 300px;
     align-items: center;
     justify-content: center;
@@ -120,9 +215,8 @@ textarea {
     align-items: center;
 }
 
-.topnav {
-    display: flex;
-    justify-content: flex-end;
+form h1 {
+    padding-right: 1em;
 }
 
 .topbar a:link {
@@ -136,8 +230,6 @@ textarea {
 
 .topbar a:visited {
     color: var(--dark-yellow);
-    text-shadow: #CBF3F0;
-    text-decoration: none;
 }
 
 .topbar a:hover {
@@ -161,6 +253,11 @@ textarea {
     border-radius: 15px 0px 0px 15px;
 }
 
+.side-nav h1 {
+    background: none;
+    padding-right: 1em;
+}
+
 .side-list {
     background-color: var(--pastel-blue);
     padding-top: 1em;
@@ -169,10 +266,12 @@ textarea {
     font-family: 'Poppins', sans-serif;
 }
 
-.side-list div {
+.side-list div a:link {
+    display: inline-block;
     padding-left: 2em;
     padding-right: 2em;
     padding-top: 0.25em;
+    text-decoration: none;
 }
 
 .recipe-display {
@@ -189,8 +288,8 @@ textarea {
 }
 
 .recipe-display button {
-    margin-left: 4em;
-    margin-right: 4em;
+    margin-left: 35%;
+    margin-right: 35%;
 }
 
 .recipe {
