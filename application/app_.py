@@ -4,9 +4,8 @@ from bson.objectid import ObjectId
 from requests import session
 from models.recipe import Recipe
 from models.recipebook import RecipeBook
-from setup import app ,db
+from application import app, db
 
-#FETCH api
 collection = RecipeBook('collections')
 
 @app.route('/',methods=['GET','POST'])
@@ -71,7 +70,6 @@ def update(recipe):
         recipes = []
         recipes.append(collection.get_by_name(recipe))
         recipes.append(collection.recipes)
-        print(recipes)
         return render_template("updaterecipe.html", recipe = recipes)
 
     if request.method == 'PUT':
@@ -100,6 +98,4 @@ def update(recipe):
         flash("Recipe Name Exists","error")
         return redirect('/')
 
-if __name__ == "__main__":
-    app.run(debug=True)
 
