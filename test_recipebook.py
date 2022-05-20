@@ -46,6 +46,7 @@ def test_get_by_name(recs):
     assert pancakes.keyword == "random keyword"
 
     recs.delete("Recipe One")
+    recs.test_clean()
 
 def test_get_by_keyword(recs):
     recs.add(Recipe("Recipe One", "random ingredients", "Combine something", "random keyword"))
@@ -58,6 +59,7 @@ def test_get_by_keyword(recs):
 
     recs.delete("Recipe One")
     recs.delete("Recipe Two")
+    recs.test_clean()
 
 def test_add_recipe(recs):
     cookies = Recipe(name="Cookies", ingredients="Sugar, Milk, Butter", instructions="something", keyword="fast")
@@ -66,6 +68,7 @@ def test_add_recipe(recs):
     assert cookies in recs.recipes
 
     recs.delete(cookies.name)
+    recs.test_clean()
 
 def test_add_error(recs):
     cookies = RecipeBook('Cookies')
@@ -82,6 +85,7 @@ def test_delete_recipe(recs):
 
     result = recs.delete("Recipe One")
     assert result is False
+    recs.test_clean()
 
 def test_search_by_name(recs):
     recs.add(Recipe("Recipe One", "random ingredients", "Combine something", "random keyword"))
@@ -94,6 +98,7 @@ def test_search_by_name(recs):
 
     recs.delete("Recipe One")
     recs.delete("Recipe Two")
+    recs.test_clean()
 
 def test_present_word(recs):
     recs.test_clean()
