@@ -1,4 +1,4 @@
-from models.recipe import Recipe
+from .recipe import Recipe
 from __init__ import db
 
 class RecipeBook:
