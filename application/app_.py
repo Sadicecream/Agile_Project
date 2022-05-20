@@ -1,6 +1,4 @@
 from flask import Flask, request, render_template, redirect, flash
-from flask_pymongo import PyMongo
-from bson.objectid import ObjectId
 from requests import session
 from models.recipe import Recipe
 from models.recipebook import RecipeBook
