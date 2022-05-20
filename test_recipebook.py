@@ -2,10 +2,10 @@ from unittest.mock import mock_open, patch
 
 import pytest
 
-from models.recipe import Recipe
-from models.recipebook import RecipeBook
-from __init__ import db
-from app import collection
+from .models.recipe import Recipe
+from .models.recipebook import RecipeBook
+from .__init__ import db
+from .app import collection
 
 JSON_FILE = """[
     

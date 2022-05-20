@@ -1,5 +1,5 @@
 import pytest
-from models.recipe import Recipe
+from .models.recipe import Recipe
 
 def test_attributes():
     muffin = Recipe("Muffins", "Eggs, Milk, Sugar", "instructions", "fast")
