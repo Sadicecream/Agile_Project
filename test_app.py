@@ -21,8 +21,8 @@ def test_check_home(client):
     # See the recipe collection
     r1 = get_url("/")
     assert r1.status_code == 200
-    assert "Recipes" in resp.text
-    assert "Create New Recipe" in resp.text
+    assert "Recipes" in r1.text
+    assert "Create New Recipe" in r1.text
 
     # Check a non existing collection
     r1 = get_url("/fhidsfs")
