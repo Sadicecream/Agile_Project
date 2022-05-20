@@ -2,11 +2,14 @@
 from unittest.mock import mock_open, patch
 import requests 
 import pytest
+from ..app import app
 
 FLASK_URL = "http://localhost:5000"
 recipe = "muffins"
 
 def get_url(endpoint):
+    res = app.test_client().get('/')
+    assert res.status_code == 200
     resp = requests.get(f"{FLASK_URL}/{endpoint}")
     return resp
 
