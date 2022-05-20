@@ -39,3 +39,4 @@ jobs:
           pytest ./test_recipe.py
           pytest ./test_recipebook.py
           python app.py &
+          pytest ./test_app.py
