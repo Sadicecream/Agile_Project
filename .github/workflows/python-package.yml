@@ -38,4 +38,3 @@ jobs:
         run: |
           pytest ./test_recipe.py
           pytest ./test_recipebook.py
-          pytest ./tests/test_app.py
