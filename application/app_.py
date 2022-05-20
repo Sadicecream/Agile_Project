@@ -2,9 +2,9 @@ from flask import Flask, request, render_template, redirect, flash
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from requests import session
-from models.recipe import Recipe
+from models.recipe import Recipe, db
 from models.recipebook import RecipeBook
-from application import app, db
+from application import app
 
 collection = RecipeBook('collections')
 
