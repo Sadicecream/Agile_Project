@@ -4,7 +4,7 @@ from bson.objectid import ObjectId
 from requests import session
 from models.recipe import Recipe
 from models.recipebook import RecipeBook
-from  __init__ import app ,db
+from __init__ import app ,db
 
 #FETCH api
 collection = RecipeBook('collections')
@@ -14,7 +14,7 @@ def home():
     if request.method == 'GET':
         return render_template("index.html",recipes=collection.recipes)
     if request.method == 'POST':
-        search = request.form.getlist("Recipe Keyword")[0]
+        search = request.form.get("Recipe Keyword")
         select = request.form.get('comp_select')
         if search != '':
             return redirect('/search/{}'.format(search+'_'+select))
@@ -42,7 +42,6 @@ def display(recipe):
         recipes = []
         recipes.append(collection.get_by_name(recipe))
         recipes.append(collection.recipes)
-        print(recipes)
         return render_template("displayrecipe.html", recipe =  recipes)    
 
     if request.method == 'DELETE':
@@ -55,11 +54,10 @@ def create():
         return render_template("create_recipe.html")
 
     if request.method == 'POST':
-        instructions = str(request.form.getlist("Recipe Instructions")[0])
-        ingredients = str(request.form.getlist("Recipe Ingredients")[0])
-        keyword = str(request.form.getlist("Recipe Keyword")[0])
-        name = str(request.form.getlist("Recipe Name")[0])
-        print(collection.get_by_name(name))
+        instructions = str(request.form.get("Recipe Instructions"))
+        ingredients = str(request.form.get("Recipe Ingredients"))
+        keyword = str(request.form.get("Recipe Keyword"))
+        name = str(request.form.get("Recipe Name"))
         if collection.get_by_name(name) == None:
                 new_entry = Recipe(name,ingredients,instructions,keyword)
                 collection.add(new_entry)
@@ -82,12 +80,12 @@ def update(recipe):
             doc=doc['_id']
         print(request.form)
 
-        new_name = str(request.form.getlist("Recipe Name")[0])
+        new_name = str(request.form.get("Recipe Name"))
 
         if (collection.get_by_name(new_name) == None) or (collection.get_by_name(new_name) == collection.get_by_name(recipe)):
-            collection.get_by_name(recipe).instructions = str(request.form.getlist("Recipe Instructions")[0])
-            collection.get_by_name(recipe).ingredients = str(request.form.getlist("Recipe Ingredients")[0])
-            collection.get_by_name(recipe).keyword = str(request.form.getlist("Recipe Keyword")[0])
+            collection.get_by_name(recipe).instructions = str(request.form.get("Recipe Instructions"))
+            collection.get_by_name(recipe).ingredients = str(request.form.get("Recipe Ingredients"))
+            collection.get_by_name(recipe).keyword = str(request.form.get("Recipe Keyword"))
             collection.get_by_name(recipe).name = new_name
             new_entry = collection.get_by_name(new_name)
             db.update_one({"_id":ObjectId(doc)},{

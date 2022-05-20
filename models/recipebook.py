@@ -92,6 +92,12 @@ class RecipeBook:
             return True
         
         return False
+
+    def test_clean(self):
+        for elem in db.find({"name":"Recipe One"}):
+            db.delete_one({"name":"Recipe One"})
+        for elem in db.find({"name":"Recipe Two"}):
+            db.delete_one({"name":"Recipe Two"})
     
     """def save(self):
         with open("data/data.json", "w") as fp:
