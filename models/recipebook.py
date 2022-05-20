@@ -1,3 +1,5 @@
+from bson.objectid import ObjectId
+
 from .recipe import Recipe
 from application import db
 
@@ -99,6 +101,25 @@ class RecipeBook:
         for elem in db.find({"name":"Recipe Two"}):
             db.delete_one({"name":"Recipe Two"})
     
+    def update(self, recipe, name, keyword, ingredients, instructions):
+        doc = db.find_one({"name":recipe})
+        if doc:
+            doc=doc['_id']
+        self.get_by_name(recipe).instructions = instructions
+        self.get_by_name(recipe).ingredients = ingredients
+        self.get_by_name(recipe).keyword = keyword
+        self.get_by_name(recipe).name = name
+        new_entry = self.get_by_name(name)
+        db.update_one({"_id":ObjectId(doc)},{
+            "$set":{
+                "name": new_entry.name,
+                "ingredients": new_entry.ingredients,
+                "instructions": new_entry.instructions,
+                "keyword": new_entry.keyword
+            }}
+        )
+
+
     """def save(self):
         with open("data/data.json", "w") as fp:
             json.dump([rec.to_dict() for rec in self.recipes], fp)"""

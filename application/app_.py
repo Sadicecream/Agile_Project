@@ -2,7 +2,7 @@ from flask import Flask, request, render_template, redirect, flash
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from requests import session
-from models.recipe import Recipe, db
+from models.recipe import Recipe
 from models.recipebook import RecipeBook
 from application import app
 
@@ -73,26 +73,14 @@ def update(recipe):
         return render_template("updaterecipe.html", recipe = recipes)
 
     if request.method == 'PUT':
-        doc = db.find_one({"name":recipe})
-        if doc:
-            doc=doc['_id']
 
         new_name = str(request.form.get("Recipe Name"))
 
         if (collection.get_by_name(new_name) == None) or (collection.get_by_name(new_name) == collection.get_by_name(recipe)):
-            collection.get_by_name(recipe).instructions = str(request.form.get("Recipe Instructions"))
-            collection.get_by_name(recipe).ingredients = str(request.form.get("Recipe Ingredients"))
-            collection.get_by_name(recipe).keyword = str(request.form.get("Recipe Keyword"))
-            collection.get_by_name(recipe).name = new_name
-            new_entry = collection.get_by_name(new_name)
-            db.update_one({"_id":ObjectId(doc)},{
-                "$set":{
-                    "name": new_entry.name,
-                    "ingredients": new_entry.ingredients,
-                    "instructions": new_entry.instructions,
-                    "keyword": new_entry.keyword
-                }}
-            )
+            new_instructions = str(request.form.get("Recipe Instructions"))
+            new_ingredients = str(request.form.get("Recipe Ingredients"))
+            new_keyword = str(request.form.get("Recipe Keyword"))
+            collection.update(recipe,new_name,new_keyword,new_ingredients,new_instructions)
             return redirect('/')
         flash("Recipe Name Exists","error")
         return redirect('/')
