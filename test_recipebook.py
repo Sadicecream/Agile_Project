@@ -4,7 +4,7 @@ import pytest
 
 from .models.recipe import Recipe
 from .models.recipebook import RecipeBook
-from .__init__ import db
+from __init__ import db
 from .app import collection
 
 JSON_FILE = """[
