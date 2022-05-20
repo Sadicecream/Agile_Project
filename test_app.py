@@ -3,7 +3,7 @@ from unittest.mock import mock_open, patch
 from urllib import response
 import requests 
 import pytest
-from application import app
+from application import app, app_
 
 FLASK_URL = "http://localhost:5000"
 recipe = "muffins"
