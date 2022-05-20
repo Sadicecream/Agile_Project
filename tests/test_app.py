@@ -10,12 +10,12 @@ recipe = "muffins"
 def get_url(endpoint):
     res = app.test_client().get('/')
     assert res.status_code == 200
-    resp = requests.get(f"{FLASK_URL}/{endpoint}")
-    return resp
+    #resp = requests.get(f"{FLASK_URL}/{endpoint}")
+    #return resp
 
 def test_check_home():
     # See the recipe collection
-    r1 = get_url("/")
+    r1 = app.test_client.get_url("/")
     assert r1.status_code == 200
     assert "Recipes" in r1.text
     assert "Create New Recipe" in r1.text
