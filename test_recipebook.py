@@ -2,8 +2,8 @@ from unittest.mock import mock_open, patch
 
 import pytest
 
-from .models.recipe import Recipe
-from .models.recipebook import RecipeBook
+from models.recipe import Recipe
+from models.recipebook import RecipeBook
 
 JSON_FILE = """[
     
@@ -96,6 +96,7 @@ def test_search_by_name(recs):
     recs.delete("Recipe Two")
 
 def test_present_word(recs):
+    recs.test_clean()
     assert recs.isWordPresent("Hello my name is", "name") == True
 
 

@@ -4,7 +4,7 @@ from bson.objectid import ObjectId
 from requests import session
 from models.recipe import Recipe
 from models.recipebook import RecipeBook
-from __init__ import app ,db
+from setup import app ,db
 
 #FETCH api
 collection = RecipeBook('collections')

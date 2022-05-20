@@ -1,5 +1,5 @@
 from .recipe import Recipe
-from ..__init__ import db
+from setup import db
 
 class RecipeBook:
     def __init__(self, name):
