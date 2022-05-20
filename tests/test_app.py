@@ -2,7 +2,7 @@
 from unittest.mock import mock_open, patch
 import requests 
 import pytest
-from ..app import app
+from .__init__ import app
 
 FLASK_URL = "http://localhost:5000"
 recipe = "muffins"
