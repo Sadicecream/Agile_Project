@@ -76,7 +76,6 @@ def update(recipe):
         doc = db.find_one({"name":recipe})
         if doc:
             doc=doc['_id']
-        print(request.form)
 
         new_name = str(request.form.get("Recipe Name"))
 
