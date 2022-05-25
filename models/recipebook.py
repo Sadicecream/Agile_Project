@@ -4,7 +4,11 @@ from .recipe import Recipe
 from application import db
 
 class RecipeBook:
+    """The RecipeBook Class"""
+
     def __init__(self, name):
+        """the main attributes of a recipe are initialized here: name"""
+
         if type(name) != str:
             raise ValueError
         else:
@@ -20,40 +24,31 @@ class RecipeBook:
             ]
 
     def isWordPresent(self, sentence, word):
-     
+        """checks if the word is present in the sentence and returns a boolean"""
+
         word = word.upper()
- 
-        # To convert the complete sentence in uppercase
         sentence = sentence.upper()
- 
-        # Both strings are converted to the same case,
-        # so that the search is not case-sensitive
-    
-        # To break the sentence in words
         s = sentence.split()
     
         for temp in s :
-    
-            # Compare the current word
-            # with the word to be searched
             if (temp == word) :
                 return True
     
         return False
         
     def get_by_name(self, recipename):
+        """returns a single recipe based on the given recipe name"""
+
         for recipe in self.recipes:
             if recipe.name in recipename:
                 return recipe
 
     def get_by_keyword(self, keyword):
+        """returns a list of recipes that match the given keyword"""
+
         found = []
         splitkeyword = keyword.split('_')
         
-        #[found.append(recipe) if recipe.keyword.lower() in keyword.lower() else None for recipe in self.recipes]
-
-        #[found.append(recipe) if recipe.name in keyword else None for recipe in self.recipes]
-
         for recipe in self.recipes:
             if (self.isWordPresent(recipe.keyword, splitkeyword[0])):
                 found.append(recipe)
@@ -63,11 +58,11 @@ class RecipeBook:
         return found
 
     def search_by_name(self, name):
+        """returns a list of recipes that match the given recipe name"""
+
         found = []
         splitname = name.split('_')
-        
-        #[found.append(recipe) if recipe.name.lower() in name.lower() else None for recipe in self.recipes]
-
+    
         for recipe in self.recipes:
             if (self.isWordPresent(recipe.name, splitname[0])):
                 found.append(recipe)
@@ -77,9 +72,13 @@ class RecipeBook:
         return found
 
     def __len__(self):
+        """returns the number of recipes in the collection"""
+
         return len(self.recipes)
 
     def add(self, instance):
+        """adds a recipe to the database as a dict"""
+
         if type(instance) is not Recipe:
             raise TypeError
         
@@ -87,6 +86,8 @@ class RecipeBook:
         db.insert_one(instance.to_dict())
 
     def delete(self, recipename):
+        """deletes a recipe from the database"""
+
         rec = self.get_by_name(recipename)
         if rec:
             self.recipes.remove(rec)
@@ -96,12 +97,16 @@ class RecipeBook:
         return False
 
     def test_clean(self):
+        """test function that deletes test recipes"""
+
         for elem in db.find({"name":"Recipe One"}):
             db.delete_one({"name":"Recipe One"})
         for elem in db.find({"name":"Recipe Two"}):
             db.delete_one({"name":"Recipe Two"})
     
     def update(self, recipe, name, keyword, ingredients, instructions):
+        """updates a recipe in the database with the new changes"""
+
         doc = db.find_one({"name":recipe})
         if doc:
             doc=doc['_id']
@@ -120,6 +125,7 @@ class RecipeBook:
         )
 
 
-    """def save(self):
-        with open("data/data.json", "w") as fp:
-            json.dump([rec.to_dict() for rec in self.recipes], fp)"""
+    # def save(self):
+    #     """saves a recipe to the JSON file"""
+    #     with open("data/data.json", "w") as fp:
+    #         json.dump([rec.to_dict() for rec in self.recipes], fp)

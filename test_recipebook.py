@@ -26,16 +26,22 @@ def recs(mock_file):
 
 
 def test_attributes_recipebook(recs):
+    """checks the main attributes of a recipebook in the RecipeBook class"""
+
     assert recs.name == "Our Recipes"
     for i in recs.recipes:
         assert type(i) is Recipe
     assert len(recs) == len(recs.recipes)
 
 def test_attribute_errors():
+    """checks the main attribute errors in the RecipeBook class"""
+
     with pytest.raises(ValueError):
         RecipeBook(123)
 
 def test_get_by_name(recs):
+    """checks the get by name method that returns a single recipe based on recipe name"""
+
     recs.add(Recipe("Recipe One", "random ingredients", "Combine something", "random keyword"))
     
     pancakes = recs.get_by_name("Recipe One")
@@ -49,6 +55,8 @@ def test_get_by_name(recs):
     recs.test_clean()
 
 def test_get_by_keyword(recs):
+    """checks the get by keyword method that returns a list based on given keyword"""
+
     recs.add(Recipe("Recipe One", "random ingredients", "Combine something", "random keyword"))
     recs.add(Recipe("Recipe Two", "random ingredients", "Combine something", "random keyword"))
 
@@ -62,6 +70,8 @@ def test_get_by_keyword(recs):
     recs.test_clean()
 
 def test_add_recipe(recs):
+    """checks the add recipe method that adds a recipe to the database"""
+
     cookies = Recipe(name="Cookies", ingredients="Sugar, Milk, Butter", instructions="something", keyword="fast")
     assert type(cookies) == Recipe
     recs.add(cookies)
@@ -71,11 +81,15 @@ def test_add_recipe(recs):
     recs.test_clean()
 
 def test_add_error(recs):
+    """checks the add recipe errors"""
+
     cookies = RecipeBook('Cookies')
     with pytest.raises(TypeError):
         recs.add(cookies)
 
 def test_delete_recipe(recs):
+    """checks the delete recipe method that deletes a recipe from the database"""
+
     recs.add(Recipe("Recipe One", "random ingredients", "Combine something", "random keyword"))
     result = recs.delete("Recipe One")
     assert result is True
@@ -88,6 +102,8 @@ def test_delete_recipe(recs):
     recs.test_clean()
 
 def test_search_by_name(recs):
+    """checks the search by name method that returns a list of recipes based on recipe name"""
+
     recs.add(Recipe("Recipe One", "random ingredients", "Combine something", "random keyword"))
     recs.add(Recipe("Recipe Two", "random ingredients", "Combine something", "random keyword"))
 
@@ -101,6 +117,8 @@ def test_search_by_name(recs):
     recs.test_clean()
 
 def test_present_word(recs):
+    """checks the present word function that returns a boolean if the word is in the sentence"""
+
     recs.test_clean()
     assert recs.isWordPresent("Hello my name is", "name") == True
 
