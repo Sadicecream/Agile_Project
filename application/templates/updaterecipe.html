@@ -34,28 +34,10 @@
                 </div>
                     <div class="button-area">
                         <input type="submit" method="GET" formaction="/" class="cancel-button" value="Cancel">
+                        <script type="text/javascript" src="{{ url_for('static', filename='/javascript/script.js') }}"></script>
                         <button class="save-button" onclick="update()">Save</button>
                     </div>
                 </section>
-                        <script>
-                            function update() {
-                                event.preventDefault()
-                                let req_body = new FormData()
-                                req_body.append("Recipe Name", document.querySelector('[name="Recipe Name"]').value)
-                                req_body.append("Recipe Keyword", document.querySelector('[name="Recipe Keyword"]').value)
-                                req_body.append("Recipe Ingredients", document.querySelector('[name="Recipe Ingredients"]').value)
-                                req_body.append("Recipe Instructions", document.querySelector('[name="Recipe Instructions"]').value)
-                                return fetch(`/update/{{ recipe[0].name }}`, {
-                                        method: 'PUT',
-                                        body: req_body
-                                    })
-                                    .then(respone => {
-                                        if (respone.redirected) {
-                                            window.location.href = respone.url
-                                        }
-                                    })
-                            }
-                        </script>
                     </div>
                 </article>
             </form>

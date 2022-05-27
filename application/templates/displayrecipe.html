@@ -45,21 +45,8 @@
                     </body>
                 </div>
             </article>
-
+            <script type="text/javascript" src="{{ url_for('static', filename='/javascript/script.js') }}"></script>
             <button onclick="delete_recipe()">Delete</button>
-            <script>
-                function delete_recipe() {
-                    event.preventDefault()
-                    return fetch("/recipes/{{ recipe[0].name }}", {
-                            method: 'DELETE'
-                        })
-                        .then(response => {
-                            if (response.redirected) {
-                                window.location.href = response.url
-                            }
-                        })
-                }
-            </script>
         </section>
     </div>
 </body>

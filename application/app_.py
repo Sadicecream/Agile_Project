@@ -62,7 +62,7 @@ def create():
         ingredients = str(request.form.get("Recipe Ingredients"))
         keyword = str(request.form.get("Recipe Keyword"))
         name = str(request.form.get("Recipe Name"))
-        if collection.get_by_name(name) == None:
+        if collection.get_by_name(name) is None:
                 new_entry = Recipe(name, ingredients, instructions, keyword)
                 collection.add(new_entry)
                 return redirect('/recipes/{}'.format(name))
